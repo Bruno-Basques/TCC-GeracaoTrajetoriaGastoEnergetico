@@ -1,13 +1,7 @@
 class Motor:
 
-    def __init__(self,
-                 resistencia_armadura,
-                 indutancia_armadura,
-                 momento_inercia_motor,
-                 torque_atrito,
-                 coeficiente_atrito_viscoso,
-                 constante_proporcionalidade_tensao_velocidade,
-                 constante_torque_motor):
+    def __init__(self, resistencia_armadura, indutancia_armadura, momento_inercia_motor, torque_atrito,
+                 coeficiente_atrito_viscoso, constante_proporcionalidade_tensao_velocidade, constante_torque_motor):
         self.__resistencia_armadura = resistencia_armadura
         self.__indutancia_armadura = indutancia_armadura
         self.__momento_inercia_motor = momento_inercia_motor
