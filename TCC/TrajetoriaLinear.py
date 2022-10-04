@@ -4,7 +4,7 @@ from Model.MotorModel import Motor
 from Model.MovimentoModel import Movimento
 from Services.AceleracaoService import aceleracao_linear
 from Services.CinematicaService import cinematica_inversa_posicoes_junta_1e2, cinematica_direta_posicoes_x_y
-from Services.EnergiaService import energia_elo1, energia_elo2
+from Services.EnergiaService import energia_elo_i
 from Services.GraficoService import criar_grafico
 from Services.TorqueService import calculo_torque_elo1, calculo_torque_elo2
 from Services.TrajetoriaService import trajetoria_linear_simples
@@ -16,7 +16,6 @@ motor = Motor(1, 0.046, 0.093, 0, 0.008, 0.55, 0.55)
 elo1 = Elo(2700, 0.05, 0.5)
 elo2 = Elo(2700, 0.05, 0.5)
 trajetoria = Movimento(15, 105, 60, 60, 10, 0.001)
-
 
 # Início do cálculo da energia gasta para movimentar o planar de dois graus de liberdade com a junta 2 móvel.
 
@@ -115,14 +114,14 @@ for e in range(1, 50):
                             motor.momento_inercia_motor(),
                             motor.coeficiente_atrito_viscoso())
 
-    energia_movimento_elo1_trajetoria_retilinea = energia_elo1(trajetoria.tempo_somatorio(),
-                                                               torque_elo1_trajetoria_retilinea,
-                                                               motor.constante_torque_motor(),
-                                                               motor.resistencia_armadura(),
-                                                               motor.indutancia_armadura(),
-                                                               motor.constante_proporcionalidade_tensao_velocidade(),
-                                                               trajetoria.infinitesimal(),
-                                                               velocidades_angulares_theta1)
+    energia_movimento_elo1_trajetoria_retilinea = energia_elo_i(trajetoria.tempo_somatorio(),
+                                                                torque_elo1_trajetoria_retilinea,
+                                                                motor.constante_torque_motor(),
+                                                                motor.resistencia_armadura(),
+                                                                motor.indutancia_armadura(),
+                                                                motor.constante_proporcionalidade_tensao_velocidade(),
+                                                                trajetoria.infinitesimal(),
+                                                                velocidades_angulares_theta1)
 
     # Calculando a energia gasta para movimentar a junta 2
     torque_elo2_trajetoria_retilinea = \
@@ -137,24 +136,17 @@ for e in range(1, 50):
                             velocidades_angulares_theta2,
                             motor.torque_atrito(),
                             motor.momento_inercia_motor(),
-                            motor.coeficiente_atrito_viscoso(),
-                            motor.constante_torque_motor(),
-                            motor.resistencia_armadura(),
-                            motor.indutancia_armadura(),
-                            trajetoria.infinitesimal(),
-                            motor.constante_proporcionalidade_tensao_velocidade())
+                            motor.coeficiente_atrito_viscoso())
 
     energia_movimento_elo2_trajetoria_retilinea = \
-        energia_elo2(trajetoria.tempo_somatorio(),
-                     torque_elo2_trajetoria_retilinea,
-                     motor.constante_torque_motor(),
-                     motor.resistencia_armadura(),
-                     motor.indutancia_armadura(),
-                     motor.constante_proporcionalidade_tensao_velocidade(),
-                     trajetoria.infinitesimal(),
-                     velocidades_angulares_theta2)
-
-
+        energia_elo_i(trajetoria.tempo_somatorio(),
+                      torque_elo2_trajetoria_retilinea,
+                      motor.constante_torque_motor(),
+                      motor.resistencia_armadura(),
+                      motor.indutancia_armadura(),
+                      motor.constante_proporcionalidade_tensao_velocidade(),
+                      trajetoria.infinitesimal(),
+                      velocidades_angulares_theta2)
 
 # Criação de gráficos para exibir os resultados do movimento composto.
 print('Movimento com ambas as juntas se movendo ao traçar uma linha reta: \n')

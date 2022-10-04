@@ -4,7 +4,7 @@ from Model.MotorModel import Motor
 from Model.MovimentoModel import Movimento
 from Services.AceleracaoService import aceleracao_angular
 from Services.CinematicaService import cinematica_direta_posicoes_x_y
-from Services.EnergiaService import energia_elo1
+from Services.EnergiaService import energia_elo_i
 from Services.GraficoService import criar_grafico
 from Services.TorqueService import calculo_torque_elo1
 from Services.TrajetoriaService import tempo_transicao_parabolico_linear, trajetoria_linear_simples
@@ -91,7 +91,7 @@ for e in range(1, 50):
                             motor.constante_proporcionalidade_tensao_velocidade())
 
     energia_movimento_elo1_trajetoria_circular = \
-        energia_elo1(trajetoria.tempo_somatorio(),
+        energia_elo_i(trajetoria.tempo_somatorio(),
                      torque_elo1_trajetoria_circular,
                      motor.constante_torque_motor(),
                      motor.resistencia_armadura(), motor.indutancia_armadura(),
