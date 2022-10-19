@@ -16,7 +16,7 @@ def criar_grafico(dados_eixo_x, dados_eixo_y,
     titulo_grafico = Título desejado para o gráfico;
     """
     eixo_x = dados_eixo_x  # Criando os valores da função no eixo x
-    eixo_y = dados_eixo_y  # Adcionando os valores da função no eixo y
+    eixo_y = dados_eixo_y  # Adicionando os valores da função no eixo y
     fig, grafico = subplots()  # Criando um gráfico
     grafico.plot(eixo_x, eixo_y, label='')  # Adicionando os valores da função no gráfico
     grafico.set_xlabel(nome_eixo_x)  # Adicionando o nome do eixo x
@@ -24,9 +24,9 @@ def criar_grafico(dados_eixo_x, dados_eixo_y,
     grafico.set_title(titulo_grafico)  # Adicionando o título do gráfico
     xticks(arange(valor_min_eixo_x - tamanho_espacamento_eixo_x,
                   valor_max_eixo_x + tamanho_espacamento_eixo_x,
-                  tamanho_espacamento_eixo_x))  # Modificando a grade do eito x
+                  tamanho_espacamento_eixo_x))  # Modificando a grade do eixo x
     yticks(arange(valor_min_eixo_y - tamanho_espacamento_eixo_y,
                   valor_max_eixo_y + tamanho_espacamento_eixo_y,
-                  tamanho_espacamento_eixo_y))  # Modificando a grade do eito y
+                  tamanho_espacamento_eixo_y))  # Modificando a grade do eixo y
     grafico.grid()
     show()

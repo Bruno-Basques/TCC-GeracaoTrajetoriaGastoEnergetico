@@ -27,6 +27,7 @@ parametro_x_final = -0.612372435696
 parametro_y = 0.612372435696
 acel_cartesiana = aceleracao_linear(parametro_x_inicial, parametro_x_final, trajetoria.tempo_somatorio())
 
+
 # Criando uma lista com os pontos, no plano cartesiano, que formam o trajeto linear do braço planar.
 pontos_interm_espaco_cartesiano = trajetoria_linear_simples(trajetoria.tempo_somatorio(), parametro_x_inicial,
                                                             parametro_x_final, acel_cartesiana)
@@ -42,8 +43,6 @@ while h < trajetoria.tempo_somatorio():
     pontos_interm_espaco_junta1.append(theta1)
     pontos_interm_espaco_junta2.append(theta2)
 
-    if(h == 5351):
-        print("cu")
     h += 1
 
 velocidades_angulares_theta1 = list()
